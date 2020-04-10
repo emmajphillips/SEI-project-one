@@ -19,7 +19,7 @@ body {
   display: flex;
   justify-content: space-around;
   padding: 20px;
-  border: 3px dashed black;
+  border: 2px solid black;
 }
 
 .joe-count {

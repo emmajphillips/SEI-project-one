@@ -3,6 +3,8 @@ function init() {
   // * DOM elements
   const grid = document.querySelector('.grid')
   const cells = []
+  const joeCount = document.querySelector('#joes-remaining')
+  console.log(joeCount)
 
   // * Grid variables
   const width = 9
@@ -15,21 +17,26 @@ function init() {
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
   }
 
-  function startGame(event) {
-    console.log('clicked', event.target.textContent)
+  function startGame() {
     if (isPlaying) return
     isPlaying = true
     for (let i = 0; i < 10; i++) {
       cells[Math.floor(Math.random() * cellCount)].classList.add('joe')
     }
+    joeCount.textContent = (grid.querySelectorAll('.joe')).length
+    insertNumbers()
   }
-  
+
+  function insertNumbers() {
+    const numberCells = cells.filter(cell => !cell.classList.contains('joe'))
+    numberCells.forEach(cell => cell.style.backgroundColor = 'yellow')
+  }
+
   createGrid()
 
   // * Event listeners
