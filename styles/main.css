@@ -1,0 +1,63 @@
+body {
+  height: 100vh;
+  margin: 0;
+}
+
+/* Game container */
+.game-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 10vh auto 0;
+  border: 2px solid black;
+  width: 500px;
+  height: 600px;
+}
+
+/* Top bar: countdown, button and timer */
+.top-bar {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  border: 3px dashed black;
+}
+
+.joe-count {
+  border: 2px solid black;
+}
+
+button {
+  background-color: pink;
+  cursor: pointer;
+}
+
+.timer {
+  border: 2px solid black;
+}
+
+/* Game grid */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 12px;
+  height: 82%;
+  width: 95%;
+  justify-content: center;
+}
+
+.grid div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  border: 1px solid lightcoral;
+  height: 11%;
+  width: 10%;
+}
+
+.grid div.joe {
+  background-color: red;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
