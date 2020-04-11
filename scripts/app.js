@@ -4,7 +4,6 @@ function init() {
   const grid = document.querySelector('.grid')
   const cells = []
   const joeCount = document.querySelector('#joes-remaining')
-  console.log(joeCount)
 
   // * Grid variables
   const width = 9
@@ -19,22 +18,31 @@ function init() {
       const cell = document.createElement('div')
       grid.appendChild(cell)
       cells.push(cell)
+      cell.textContent = i
     }
   }
 
   function startGame() {
     if (isPlaying) return
     isPlaying = true
-    for (let i = 0; i < 10; i++) {
-      cells[Math.floor(Math.random() * cellCount)].classList.add('joe')
-    }
-    joeCount.textContent = (grid.querySelectorAll('.joe')).length
-    insertNumbers()
+
+    generateBoard()
   }
 
-  function insertNumbers() {
-    const numberCells = cells.filter(cell => !cell.classList.contains('joe'))
-    numberCells.forEach(cell => cell.style.backgroundColor = 'yellow')
+  function generateBoard() {
+    // Generate Joe's
+    const joeCells = []
+
+    while (joeCells.length < 10) {
+      const randomIndex = Math.floor(Math.random() * cells.length)
+      cells[randomIndex].classList.add('joe')
+      joeCells.push(randomIndex)
+    }
+    joeCount.textContent = joeCells.length
+
+    console.log(cells)
+    console.log(joeCells)
+
   }
 
   createGrid()
