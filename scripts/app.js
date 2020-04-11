@@ -4,39 +4,33 @@ function init() {
   const grid = document.querySelector('.grid')
   const cells = []
   const joeCount = document.querySelector('#joes-remaining')
-
+  
   // * Grid variables
   const width = 9
   const height = 9
   const cellCount = width * height
-
+  
   // * Game variables
-  let isPlaying = false
-
+  
+  // ? Create grid
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       grid.appendChild(cell)
       cells.push(cell)
     }
-
+    
     generateBoard()
   }
-
+  
   function generateBoard() {
-    if (isPlaying) return
-    isPlaying = true
-
-    // ? Generate Joe's
-    const joeCells = [] // This will store all indexes of cells with 'joe' class
-
-    while (joeCells.length < 10) {
-      const randomIndex = Math.floor(Math.random() * cells.length)
+    // ? Generate Joe
+    for (let i = 0; i < 10; i++ ) {
+      const randomIndex = Math.floor(Math.random() * cellCount)
       cells[randomIndex].classList.add('joe')
-      joeCells.push(randomIndex)
     }
-    joeCount.textContent = joeCells.length
-
+    joeCount.textContent = (grid.querySelectorAll('.joe')).length
+    
     // ? Generate numbers in relation to joeCells
     cells.forEach((cell, index) => {
       let joeCounter = 0
