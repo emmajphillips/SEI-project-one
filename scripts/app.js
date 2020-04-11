@@ -18,20 +18,17 @@ function init() {
       const cell = document.createElement('div')
       grid.appendChild(cell)
       cells.push(cell)
-      cell.textContent = i
     }
-  }
-
-  function startGame() {
-    if (isPlaying) return
-    isPlaying = true
 
     generateBoard()
   }
 
   function generateBoard() {
-    // Generate Joe's
-    const joeCells = []
+    if (isPlaying) return
+    isPlaying = true
+
+    // ? Generate Joe's
+    const joeCells = [] // This will store all indexes of cells with 'joe' class
 
     while (joeCells.length < 10) {
       const randomIndex = Math.floor(Math.random() * cells.length)
@@ -40,15 +37,55 @@ function init() {
     }
     joeCount.textContent = joeCells.length
 
-    console.log(cells)
-    console.log(joeCells)
+    // ? Generate numbers in relation to joeCells
+    cells.forEach((cell, index) => {
+      let joeCounter = 0
+      const topNeighbour = -width // -9
+      const bottomNeighbour = width // 9
+      const topRightNeighbour = (-width + 1) // -8
+      const bottomRightNeighbour = width + 1 // 10
+      const topLeftNeighbour = (-width - 1) // -10
+      const bottomLeftNeighbour = width - 1 // 8
+      if (cells[index + 1] && cells[index + 1].hasAttributes()) {
+        joeCounter += 1
+      }
+      if (cells[index - 1] && cells[index - 1].hasAttributes()) {
+        joeCounter += 1
+      }
+      if (cells[index + topNeighbour] && cells[index + topNeighbour].hasAttributes()) {
+        joeCounter += 1
+      }
+      if (cells[index + bottomNeighbour] && cells[index + bottomNeighbour].hasAttributes()) {
+        joeCounter += 1
+      }
+      if (cells[index + topRightNeighbour] && cells[index + topRightNeighbour].hasAttributes()) {
+        joeCounter += 1
+      }
+      if (cells[index + bottomRightNeighbour] && cells[index + bottomRightNeighbour].hasAttributes()) {
+        joeCounter += 1
+      }
+      if (cells[index + topLeftNeighbour] && cells[index + topLeftNeighbour].hasAttributes()) {
+        joeCounter += 1
+      }
+      if (cells[index + bottomLeftNeighbour] && cells[index + bottomLeftNeighbour].hasAttributes()) {
+        joeCounter += 1
+      }
+      cell.textContent = joeCounter
+      
+      if (cells[index].hasAttributes()) {
+        cell.textContent = ''
+      }
+    })
+  }
 
+  function playerMove(event) {
+    console.log(event.target)
   }
 
   createGrid()
 
   // * Event listeners
-  grid.addEventListener('click', startGame)
+  grid.addEventListener('click', playerMove)
 }
 
 window.addEventListener('DOMContentLoaded', init)
