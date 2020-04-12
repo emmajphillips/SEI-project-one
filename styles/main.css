@@ -39,11 +39,12 @@ button {
 .grid {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   margin: 12px;
-  height: 82%;
+  height: 85%;
   width: 95%;
-  justify-content: center;
+  border: 1px solid lightcoral;
 }
 
 .grid div {
@@ -51,17 +52,19 @@ button {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  border: 1px solid lightcoral;
-  height: 11%;
+  border: 1px solid yellowgreen;
+  height: 10.75%;
   width: 10%;
 }
 
 .grid div.joe {
-  background-color: red;
+  background-color: blue;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-.covered {
-  display: none;
+.overlay {
+  background-color: white;
+  width: 100%;
+  position: absolute;
 }
