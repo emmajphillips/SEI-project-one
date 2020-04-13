@@ -42,41 +42,49 @@ function init() {
     joeCount.textContent = (grid.querySelectorAll('.joe')).length
 
     // ? Generate and display numbers within non-Joe cells to indicate in relation to cells with 'joe' class
-    // ! BUG: Cells on edges counting 'joe' cells at [index - 1]/[index + 1], but visually they look to be on completely different rows
     cells.forEach((cell, index) => {
-      let joeCounter = 0
-      const topNeighbour = -width // -9
-      const bottomNeighbour = width // 9
-      const topRightNeighbour = (-width + 1) // -8
-      const bottomRightNeighbour = width + 1 // 10
-      const topLeftNeighbour = (-width - 1) // -10
-      const bottomLeftNeighbour = width - 1 // 8
-      if (cells[index + 1] && cells[index + 1].classList.contains('joe')) {
-        joeCounter += 1
-      }
-      if (cells[index - 1] && cells[index - 1].classList.contains('joe')) {
-        joeCounter += 1
-      }
-      if (cells[index + topNeighbour] && cells[index + topNeighbour].classList.contains('joe')) {
-        joeCounter += 1
-      }
-      if (cells[index + bottomNeighbour] && cells[index + bottomNeighbour].classList.contains('joe')) {
-        joeCounter += 1
-      }
-      if (cells[index + topRightNeighbour] && cells[index + topRightNeighbour].classList.contains('joe')) {
-        joeCounter += 1
-      }
-      if (cells[index + bottomRightNeighbour] && cells[index + bottomRightNeighbour].classList.contains('joe')) {
-        joeCounter += 1
-      }
-      if (cells[index + topLeftNeighbour] && cells[index + topLeftNeighbour].classList.contains('joe')) {
-        joeCounter += 1
-      }
-      if (cells[index + bottomLeftNeighbour] && cells[index + bottomLeftNeighbour].classList.contains('joe')) {
-        joeCounter += 1
-      }
-      cell.textContent = joeCounter
+      // Variables for adjacent cells
+      const topLeftNeighbour = cells[index - width - 1] // -10
+      const topNeighbour = cells[index - width] // -9
+      const topRightNeighbour = cells[index - width + 1] // -8
+      const leftNeighbour = cells[index - 1] // -1
+      const rightNeightbour = cells[index + 1] // 1
+      const bottomLeftNeighbour = cells[index + width - 1] // 8
+      const bottomNeighbour = cells[index + width] // 9
+      const bottomRightNeighbour = cells[index + width + 1] // 10
 
+      const x = index % width
+      const y = Math.floor(index / width)
+      
+      let joeCounter = 0
+
+      if (x > 0 && topLeftNeighbour && topLeftNeighbour.classList.contains('joe')) {
+        joeCounter += 1
+      }
+      if (topNeighbour && topNeighbour.classList.contains('joe')) {
+        joeCounter += 1
+      }
+      if (x < width - 1 && topRightNeighbour && topRightNeighbour.classList.contains('joe')) {
+        joeCounter += 1
+      }
+      if (x > 0 && leftNeighbour && leftNeighbour.classList.contains('joe')) {
+        joeCounter += 1
+      }
+      if (x < width - 1 && rightNeightbour && rightNeightbour.classList.contains('joe')) {
+        joeCounter += 1
+      }
+      if (bottomNeighbour && bottomNeighbour.classList.contains('joe')) {
+        joeCounter += 1
+      }
+      if (x < width - 1 && bottomRightNeighbour && bottomRightNeighbour.classList.contains('joe')) {
+        joeCounter += 1
+      }
+      if (x > 0 && bottomLeftNeighbour && bottomLeftNeighbour.classList.contains('joe')) {
+        joeCounter += 1
+      }
+        
+      cell.textContent = joeCounter
+      
       if (cells[index].classList.contains('joe')) {
         cell.textContent = ''
       }
