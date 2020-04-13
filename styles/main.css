@@ -58,14 +58,17 @@ button {
 }
 
 .grid div.unclicked {
-  color: transparent;
-  /* border: 1px solid yellowgreen; */
+  /* color: transparent; */
+}
+
+.grid div.joe.unclicked {
+  /* background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)) */
 }
 
 .grid div.joe {
-  background-image: 
-    /* linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)) */
-    url(../assets/joe-exotic.jpg);
+  background: url(../assets/joe-exotic.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+

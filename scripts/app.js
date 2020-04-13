@@ -27,7 +27,9 @@ function init() {
   function startGame() {
     if (isPlaying) return
     isPlaying = true
+
     generateBoard()
+
   }
   
   function generateBoard() {
@@ -40,6 +42,7 @@ function init() {
     joeCount.textContent = (grid.querySelectorAll('.joe')).length
 
     // ? Generate and display numbers within non-Joe cells to indicate in relation to cells with 'joe' class
+    // ! BUG: Cells on edges counting 'joe' cells at [index - 1]/[index + 1], but visually they look to be on completely different rows
     cells.forEach((cell, index) => {
       let joeCounter = 0
       const topNeighbour = -width // -9
@@ -84,9 +87,6 @@ function init() {
   function playerMove(event) {
     console.log(event.target)
     event.target.classList.remove('unclicked')
-    if (event.target.classList.contains('joe')) {
-      alert('You lose')
-    }
   }
 
   createGrid()
