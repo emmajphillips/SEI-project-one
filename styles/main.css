@@ -57,13 +57,15 @@ button {
   width: 10%;
 }
 
-.unclicked {
-  background-color: yellow;
-  opacity: 0.5;
+.grid div.unclicked {
+  color: transparent;
+  /* border: 1px solid yellowgreen; */
 }
 
 .grid div.joe {
-  background-image: url(../assets/joe-exotic.jpg);
+  background-image: 
+    /* linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)) */
+    url(../assets/joe-exotic.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
