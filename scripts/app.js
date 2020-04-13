@@ -21,6 +21,7 @@ function init() {
       grid.appendChild(cell)
       cells.push(cell)
     }
+    cells.forEach(cell => cell.classList.add('unclicked'))
   }
 
   function startGame() {
@@ -47,33 +48,33 @@ function init() {
       const bottomRightNeighbour = width + 1 // 10
       const topLeftNeighbour = (-width - 1) // -10
       const bottomLeftNeighbour = width - 1 // 8
-      if (cells[index + 1] && cells[index + 1].hasAttributes()) {
+      if (cells[index + 1] && cells[index + 1].classList.contains('joe')) {
         joeCounter += 1
       }
-      if (cells[index - 1] && cells[index - 1].hasAttributes()) {
+      if (cells[index - 1] && cells[index - 1].classList.contains('joe')) {
         joeCounter += 1
       }
-      if (cells[index + topNeighbour] && cells[index + topNeighbour].hasAttributes()) {
+      if (cells[index + topNeighbour] && cells[index + topNeighbour].classList.contains('joe')) {
         joeCounter += 1
       }
-      if (cells[index + bottomNeighbour] && cells[index + bottomNeighbour].hasAttributes()) {
+      if (cells[index + bottomNeighbour] && cells[index + bottomNeighbour].classList.contains('joe')) {
         joeCounter += 1
       }
-      if (cells[index + topRightNeighbour] && cells[index + topRightNeighbour].hasAttributes()) {
+      if (cells[index + topRightNeighbour] && cells[index + topRightNeighbour].classList.contains('joe')) {
         joeCounter += 1
       }
-      if (cells[index + bottomRightNeighbour] && cells[index + bottomRightNeighbour].hasAttributes()) {
+      if (cells[index + bottomRightNeighbour] && cells[index + bottomRightNeighbour].classList.contains('joe')) {
         joeCounter += 1
       }
-      if (cells[index + topLeftNeighbour] && cells[index + topLeftNeighbour].hasAttributes()) {
+      if (cells[index + topLeftNeighbour] && cells[index + topLeftNeighbour].classList.contains('joe')) {
         joeCounter += 1
       }
-      if (cells[index + bottomLeftNeighbour] && cells[index + bottomLeftNeighbour].hasAttributes()) {
+      if (cells[index + bottomLeftNeighbour] && cells[index + bottomLeftNeighbour].classList.contains('joe')) {
         joeCounter += 1
       }
       cell.textContent = joeCounter
 
-      if (cells[index].hasAttributes()) {
+      if (cells[index].classList.contains('joe')) {
         cell.textContent = ''
       }
     })
@@ -82,6 +83,7 @@ function init() {
 
   function playerMove(event) {
     console.log(event.target)
+    event.target.classList.remove('unclicked')
     if (event.target.classList.contains('joe')) {
       alert('You lose')
     }

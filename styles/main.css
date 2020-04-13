@@ -57,14 +57,13 @@ button {
   width: 10%;
 }
 
-.grid div.joe {
-  background-color: blue;
-  background-repeat: no-repeat;
-  background-size: contain;
+.unclicked {
+  background-color: yellow;
+  opacity: 0.5;
 }
 
-.overlay {
-  background-color: white;
-  width: 100%;
-  position: absolute;
+.grid div.joe {
+  background-image: url(../assets/joe-exotic.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
