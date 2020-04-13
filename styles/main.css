@@ -1,17 +1,25 @@
 body {
   height: 100vh;
-  margin: 0;
+  margin: 10vh auto 0;
+  background: 
+    linear-gradient(rgba(186, 42, 95, 0.4), rgba(186, 42, 95, 0.4)),
+    url(../assets/tiger-print.jpeg);
+  background-size: cover;
+}
+
+main {
+  margin: 0 auto;
 }
 
 /* Game container */
 .game-container {
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  margin: 10vh auto 0;
+  margin: 10vh auto;
   border: 2px solid black;
   width: 500px;
   height: 600px;
+  background-color: rgb(186, 42, 95);
 }
 
 /* Top bar: countdown, button and timer */
