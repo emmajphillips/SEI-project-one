@@ -52,17 +52,10 @@ button {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  background-color: pink;
   border: 1px solid yellowgreen;
   height: 10.75%;
   width: 10%;
-}
-
-.grid div.unclicked {
-  /* color: transparent; */
-}
-
-.grid div.joe.unclicked {
-  /* background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)) */
 }
 
 .grid div.joe {
@@ -71,4 +64,18 @@ button {
   background-size: cover;
 }
 
+/* Styling for unclicked cells */
+.grid div.unclicked {
+  background-color: white;
+  color: transparent;
+}
+
+.grid div.joe.unclicked {
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0))
+}
+
+/* Flagged cell styling */
+.grid div.unclicked.flagged {
+  background-color: violet;
+}
 

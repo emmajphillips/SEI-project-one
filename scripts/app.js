@@ -4,6 +4,7 @@ function init() {
   const grid = document.querySelector('.grid')
   const cells = []
   const joeCount = document.querySelector('#joes-remaining')
+  const newGameButton = document.querySelector('button')
 
   // * Grid variables
   const width = 9
@@ -43,7 +44,7 @@ function init() {
 
     // ? Generate and display numbers within non-Joe cells to indicate in relation to cells with 'joe' class
     cells.forEach((cell, index) => {
-      // Variables for adjacent cells
+      // * Variables for adjacent cells
       const topLeftNeighbour = cells[index - width - 1] // -10
       const topNeighbour = cells[index - width] // -9
       const topRightNeighbour = cells[index - width + 1] // -8
@@ -53,8 +54,8 @@ function init() {
       const bottomNeighbour = cells[index + width] // 9
       const bottomRightNeighbour = cells[index + width + 1] // 10
 
+      // * Variable to help cells display correct number
       const x = index % width
-      const y = Math.floor(index / width)
       
       let joeCounter = 0
 
@@ -88,21 +89,51 @@ function init() {
       if (cells[index].classList.contains('joe')) {
         cell.textContent = ''
       }
+
+      if (cell.textContent === '0') {
+        cell.textContent = ''
+        cell.classList.remove('unclicked')
+      } 
     })
     
   }
 
   function playerMove(event) {
-    console.log(event.target)
     event.target.classList.remove('unclicked')
+
+    if (event.target.classList.contains('joe')) {
+      gameOver()
+    }
+  }
+
+  function placeFlag(event) {
+    event.preventDefault()
+    event.target.classList.add('flagged')
+    console.log(event.target)
+  }
+
+  function gameOver() {
+    cells.forEach(cell => {
+      if (cell.classList.contains('joe')) {
+        cell.classList.remove('unclicked')
+      }
+      cell.removeEventListener('click', playerMove)
+    })
+  }
+
+  function resetGame() {
+    console.log('Hey all you cool cats and kittens')
+    location.reload()
   }
 
   createGrid()
 
   // * Event listeners
   grid.addEventListener('click', startGame)
+  newGameButton.addEventListener('click', resetGame)
   cells.forEach(cell => {
     cell.addEventListener('click', playerMove)
+    cell.addEventListener('contextmenu', placeFlag)
   })
 }
 
