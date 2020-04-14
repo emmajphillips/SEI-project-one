@@ -127,6 +127,7 @@ function init() {
     }
     event.target.classList.remove('unclicked')
     
+
   }
 
   // ? Placing flag

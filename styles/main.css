@@ -1,3 +1,5 @@
+
+/* Global */
 body {
   height: 100vh;
   margin: 10vh auto 0;
@@ -5,44 +7,86 @@ body {
     linear-gradient(rgba(247, 178, 103, 0.95), rgba(247, 178, 103, 0.95)),
     url(../assets/tiger-print.jpeg);
   background-size: cover;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-main {
+main, h1, h2, p {
   margin: 0 auto;
+}
+
+/* Heading */
+.heading {
+  margin: 0 auto;
+  width: 600px;
+  padding: 10px 0;
+  background: #F8ca82;
+  border: 3px solid #F99D65;
+  border-radius: 5px;
+  box-shadow: -6px 6px 0px #E18F5C;
+  -webkit-text-stroke: 0.5px black; /* Can I use this?? */
+  color: white;
+  text-shadow:
+  -0.5px -0.5px 0 #000,  
+  0.5px -0.5px 0 #000,
+  -0.5px 0.5px 0 #000,
+  0.5px 0.5px 0 #000;
+  text-align: center;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 60px;;
+}
+
+h2 {
+  font-size: 40px;
 }
 
 /* Game container */
 .game-container {
   display: flex;
   flex-direction: column;
-  margin: 10vh auto;
+  margin: 5vh auto;
   padding: 9px;
   width: 500px;
   height: 600px;
   border-radius: 4%;
   background-color: #F27059;
+  font-family: 'Oswald', sans-serif;
+  color: white;
 }
 
 /* Top bar: countdown, button and timer */
 .top-bar {
   display: flex;
-  justify-content: space-around;
-  margin: 5px;
-  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
 }
 
-.joe-count {
-  border: 2px solid black;
+
+.joe-count, .timer {
+  padding: 5px;
+  text-transform: uppercase;
 }
 
 button {
-  background-color: pink;
+  margin: 0 75px 0 70px;
+  padding: 36px 46px;
+  border: 1px solid rgb(192, 72, 66);
+  background: 
+    url(../assets/carole-baskin.png), 
+    pink;
+  background-repeat: no-repeat;
+  background-size: contain;
   cursor: pointer;
 }
 
-.timer {
-  border: 2px solid black;
+span {
+font-size: 30px;
 }
 
 /* Game grid */
@@ -88,7 +132,10 @@ button {
 /* Flagged cell styling */
 .grid div.unclicked.flagged {
   background: 
-  url(../assets/tiger-print.jpeg),
+  url(../assets/paw-print-flag.png),
   linear-gradient(rgba(242, 92, 84, 1), rgba(242, 92, 84, 1));
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: transparent;
 }
