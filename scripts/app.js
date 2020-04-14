@@ -24,16 +24,11 @@ function init() {
     }
     cells.forEach(cell => cell.classList.add('unclicked'))
   }
-
-  function startGame() {
+  
+  function generateBoard(event) {
     if (isPlaying) return
     isPlaying = true
 
-    generateBoard()
-
-  }
-  
-  function generateBoard() {
     // ? Generate Joe's and display sum in joeCount
     // ! BUG: The below does not always generate 10, as there are occasional duplicates with randomIndex variable
     for (let i = 0; i < 10; i++) {
@@ -42,6 +37,11 @@ function init() {
     }
     joeCount.textContent = (grid.querySelectorAll('.joe')).length
 
+    // ? If first cell selected contains class of 'joe', game is automatically over
+    if (event.target.classList.contains('joe')) {
+      gameOver()
+    }
+    
     // ? Generate and display numbers within non-Joe cells to indicate in relation to cells with 'joe' class
     cells.forEach((cell, index) => {
       // * Variables for adjacent cells
@@ -53,12 +53,12 @@ function init() {
       const bottomLeftNeighbour = cells[index + width - 1] // 8
       const bottomNeighbour = cells[index + width] // 9
       const bottomRightNeighbour = cells[index + width + 1] // 10
-
+      
       // * Variable to help cells display correct number
       const x = index % width
       
       let joeCounter = 0
-
+      
       if (x > 0 && topLeftNeighbour && topLeftNeighbour.classList.contains('joe')) {
         joeCounter += 1
       }
@@ -83,33 +83,56 @@ function init() {
       if (x > 0 && bottomLeftNeighbour && bottomLeftNeighbour.classList.contains('joe')) {
         joeCounter += 1
       }
-        
+      
       cell.textContent = joeCounter
       
       if (cells[index].classList.contains('joe')) {
         cell.textContent = ''
       }
-
+      
       if (cell.textContent === '0') {
+        if (x > 0 && topLeftNeighbour) {
+          topLeftNeighbour.classList.remove('unclicked')
+        }
+        if (topNeighbour) {
+          topNeighbour.classList.remove('unclicked')
+        }
+        if (x < width - 1 && topRightNeighbour) {
+          topRightNeighbour.classList.remove('unclicked')
+        }
+        if (x > 0 && leftNeighbour) {
+          leftNeighbour.classList.remove('unclicked')
+        }
+        if (x < width - 1 && rightNeightbour) {
+          rightNeightbour.classList.remove('unclicked')
+        }
+        if (bottomNeighbour) {
+          bottomNeighbour.classList.remove('unclicked')
+        }
+        if (x < width - 1 && bottomRightNeighbour) {
+          bottomRightNeighbour.classList.remove('unclicked')
+        }
+        if (x > 0 && bottomLeftNeighbour) {
+          bottomLeftNeighbour.classList.remove('unclicked')
+        }
         cell.textContent = ''
         cell.classList.remove('unclicked')
       } 
     })
-    
   }
 
   function playerMove(event) {
-    event.target.classList.remove('unclicked')
-
     if (event.target.classList.contains('joe')) {
       gameOver()
     }
+    event.target.classList.remove('unclicked')
+    
   }
 
+  // ? Placing flag
   function placeFlag(event) {
     event.preventDefault()
     event.target.classList.toggle('flagged')
-    console.log(event.target)
   }
 
   function gameOver() {
@@ -122,19 +145,18 @@ function init() {
   }
 
   function resetGame() {
-    console.log('Hey all you cool cats and kittens')
     location.reload()
   }
 
   createGrid()
 
   // * Event listeners
-  grid.addEventListener('click', startGame)
-  newGameButton.addEventListener('click', resetGame)
+  grid.addEventListener('click', generateBoard)
   cells.forEach(cell => {
     cell.addEventListener('click', playerMove)
     cell.addEventListener('contextmenu', placeFlag)
   })
+  newGameButton.addEventListener('click', resetGame)
 }
 
 window.addEventListener('DOMContentLoaded', init)

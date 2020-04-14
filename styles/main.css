@@ -5,6 +5,7 @@ body {
     linear-gradient(rgba(247, 178, 103, 0.95), rgba(247, 178, 103, 0.95)),
     url(../assets/tiger-print.jpeg);
   background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 main {
@@ -65,6 +66,7 @@ button {
   border: 1px solid rgb(192, 72, 66);
   height: 10.75%;
   width: 10%;
+  font-size: 30px;
 }
 
 .grid div.joe {
@@ -80,11 +82,13 @@ button {
 }
 
 .grid div.joe.unclicked {
-  background: linear-gradient(rgba(242, 92, 84, 1), rgba(242, 92, 84, 1))
+  background: linear-gradient(rgba(242, 92, 84, 1), rgba(242, 92, 84, 1));
 }
 
 /* Flagged cell styling */
 .grid div.unclicked.flagged {
-  background-color: violet;
+  background: 
+  url(../assets/tiger-print.jpeg),
+  linear-gradient(rgba(242, 92, 84, 1), rgba(242, 92, 84, 1));
+  background-size: contain;
 }
-
