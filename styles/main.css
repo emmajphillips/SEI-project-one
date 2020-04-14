@@ -2,7 +2,7 @@
 /* Global */
 body {
   height: 100vh;
-  margin: 10vh auto 0;
+  margin: 0 auto;
   background: 
     linear-gradient(rgba(247, 178, 103, 0.95), rgba(247, 178, 103, 0.95)),
     url(../assets/tiger-print.jpeg);
@@ -15,7 +15,7 @@ main, h1, h2, p {
 
 /* Heading */
 .heading {
-  margin: 0 auto;
+  margin: 40px auto;
   width: 600px;
   padding: 10px 0;
   background: #F8ca82;
@@ -46,10 +46,11 @@ h2 {
 .game-container {
   display: flex;
   flex-direction: column;
-  margin: 5vh auto;
+  align-items: center;
+  margin: 10px auto 0;
   padding: 9px;
   width: 500px;
-  height: 600px;
+  height: 650px;
   border-radius: 4%;
   background-color: #F27059;
   font-family: 'Oswald', sans-serif;
@@ -67,7 +68,6 @@ h2 {
   text-align: center;
 }
 
-
 .joe-count, .timer {
   padding: 5px;
   text-transform: uppercase;
@@ -76,7 +76,7 @@ h2 {
 button {
   margin: 0 75px 0 70px;
   padding: 36px 46px;
-  border: 1px solid rgb(192, 72, 66);
+  border: 2px solid rgb(192, 72, 66);
   background: 
     url(../assets/carole-baskin.png), 
     pink;
@@ -96,9 +96,9 @@ font-size: 30px;
   justify-content: center;
   align-items: center;
   margin: 12px;
-  height: 85%;
+  height: 88%;
   width: 95%;
-  border: 1px solid rgb(192, 72, 66);
+  border: 3px solid rgb(192, 72, 66);
 }
 
 .grid div {

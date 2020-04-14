@@ -2,17 +2,19 @@ function init() {
 
   // * DOM elements
   const grid = document.querySelector('.grid')
-  const cells = []
+  const cells = [] // Array of divs
   const joeCount = document.querySelector('#joes-remaining')
+  const timer = document.querySelector('#timer')
   const newGameButton = document.querySelector('button')
 
   // * Grid variables
   const width = 9
   const height = 9
-  const cellCount = width * height
+  const cellCount = width * height // have included this in case able to make board of different dimensions
 
   // * Game variables
   let isPlaying = false
+  let timePassed = 0
 
   function createGrid() {
     // ? Create grid
@@ -29,6 +31,13 @@ function init() {
     if (isPlaying) return
     isPlaying = true
 
+    // ? Start timer
+    // ! BUG: Timer does not stop once started
+    const timerId = setInterval(() => {
+      timePassed += 1
+      timer.textContent = timePassed
+    }, 1000)
+
     // ? Generate Joe's and display sum in joeCount
     // ! BUG: The below does not always generate 10, as there are occasional duplicates with randomIndex variable
     for (let i = 0; i < 10; i++) {
@@ -39,6 +48,7 @@ function init() {
 
     // ? If first cell selected contains class of 'joe', game is automatically over
     if (event.target.classList.contains('joe')) {
+      clearInterval(timerId)
       gameOver()
     }
     
@@ -89,7 +99,8 @@ function init() {
       if (cells[index].classList.contains('joe')) {
         cell.textContent = ''
       }
-      
+
+      // * Clearing empty cells to reveal a border of numbers
       if (cell.textContent === '0') {
         if (x > 0 && topLeftNeighbour) {
           topLeftNeighbour.classList.remove('unclicked')
@@ -126,14 +137,18 @@ function init() {
       gameOver()
     }
     event.target.classList.remove('unclicked')
-    
-
   }
 
   // ? Placing flag
   function placeFlag(event) {
+    // ? Right click places and/or removes flag on board
     event.preventDefault()
     event.target.classList.toggle('flagged')
+    
+    // ! BUG: Any right click reduces the joeCount value, need to create conditional that allows count to go up and down, and that ignores cells that have been clicked or cleared
+    const flaggedCells = []
+    flaggedCells.push(event.target)
+    joeCount.textContent = parseInt(joeCount.textContent) - flaggedCells.length
   }
 
   function gameOver() {
