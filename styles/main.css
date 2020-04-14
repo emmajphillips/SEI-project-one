@@ -2,7 +2,7 @@ body {
   height: 100vh;
   margin: 10vh auto 0;
   background: 
-    linear-gradient(rgba(186, 42, 95, 0.4), rgba(186, 42, 95, 0.4)),
+    linear-gradient(rgba(247, 178, 103, 0.95), rgba(247, 178, 103, 0.95)),
     url(../assets/tiger-print.jpeg);
   background-size: cover;
 }
@@ -16,18 +16,19 @@ main {
   display: flex;
   flex-direction: column;
   margin: 10vh auto;
-  border: 2px solid black;
+  padding: 9px;
   width: 500px;
   height: 600px;
-  background-color: rgb(186, 42, 95);
+  border-radius: 4%;
+  background-color: #F27059;
 }
 
 /* Top bar: countdown, button and timer */
 .top-bar {
   display: flex;
   justify-content: space-around;
-  padding: 20px;
-  border: 2px solid black;
+  margin: 5px;
+  padding: 15px;
 }
 
 .joe-count {
@@ -52,7 +53,7 @@ button {
   margin: 12px;
   height: 85%;
   width: 95%;
-  border: 1px solid lightcoral;
+  border: 1px solid rgb(192, 72, 66);
 }
 
 .grid div {
@@ -60,8 +61,8 @@ button {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  background-color: pink;
-  border: 1px solid yellowgreen;
+  background-color: #F4845F;
+  border: 1px solid rgb(192, 72, 66);
   height: 10.75%;
   width: 10%;
 }
@@ -74,12 +75,12 @@ button {
 
 /* Styling for unclicked cells */
 .grid div.unclicked {
-  background-color: white;
+  background-color: #F25C54;
   color: transparent;
 }
 
 .grid div.joe.unclicked {
-  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0))
+  background: linear-gradient(rgba(242, 92, 84, 1), rgba(242, 92, 84, 1))
 }
 
 /* Flagged cell styling */

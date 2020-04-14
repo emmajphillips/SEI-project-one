@@ -108,7 +108,7 @@ function init() {
 
   function placeFlag(event) {
     event.preventDefault()
-    event.target.classList.add('flagged')
+    event.target.classList.toggle('flagged')
     console.log(event.target)
   }
 
