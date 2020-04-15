@@ -14,10 +14,11 @@ function init() {
 
   // * Game variables
   let isPlaying = false
+  let timerId
   let timePassed = 0
 
+  // ? Create grid
   function createGrid() {
-    // ? Create grid
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       
@@ -26,21 +27,30 @@ function init() {
     }
     cells.forEach(cell => cell.classList.add('unclicked'))
   }
+
+  // ? Start timer
+  function startTimer() {
+    timerId = setInterval(() => {
+      timePassed += 1
+      timer.textContent = timePassed
+    }, 1000)
+  }
   
+  // ? Stop timer
+  function stopTimer() {
+    clearInterval(timerId)
+  }
+  
+  // ? Board populates and timer starts on player's first click within the grid
   function generateBoard(event) {
     if (isPlaying) return
     isPlaying = true
 
-    // ? Start timer
-    // ! BUG: Timer does not stop once started
-    const timerId = setInterval(() => {
-      timePassed += 1
-      timer.textContent = timePassed
-    }, 1000)
+    startTimer()
 
     // ? Generate Joe's and display sum in joeCount
     // ! BUG: The below does not always generate 10, as there are occasional duplicates with randomIndex variable
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 3; i++) {
       const randomIndex = Math.floor(Math.random() * cellCount)
       cells[randomIndex].classList.add('joe')
     }
@@ -48,7 +58,6 @@ function init() {
 
     // ? If first cell selected contains class of 'joe', game is automatically over
     if (event.target.classList.contains('joe')) {
-      clearInterval(timerId)
       gameOver()
     }
     
@@ -131,46 +140,60 @@ function init() {
       } 
     })
   }
-
+  
   function playerMove(event) {
     if (event.target.classList.contains('joe')) {
       gameOver()
     }
     event.target.classList.remove('unclicked')
+    console.log('Player move', cells)
   }
-
-  // ? Placing flag
+  
+  
+  // ? Placing flags: Right click places and/or removes flag on board, it also increases or decreases the joeCount displayed
+  // ! BUG: This currently allows the player to place flags before the game has commenced
   function placeFlag(event) {
-    // ? Right click places and/or removes flag on board
     event.preventDefault()
-    event.target.classList.toggle('flagged')
-    
-    // ! BUG: Any right click reduces the joeCount value, need to create conditional that allows count to go up and down, and that ignores cells that have been clicked or cleared
-    const flaggedCells = []
-    flaggedCells.push(event.target)
-    joeCount.textContent = parseInt(joeCount.textContent) - flaggedCells.length
+    if (event.target.classList.contains('flagged')) {
+      event.target.classList.remove('flagged')
+      joeCount.textContent = parseInt(joeCount.textContent) + 1
+    } else {
+      event.target.classList.add('flagged')
+      joeCount.textContent = parseInt(joeCount.textContent) - 1
+    }
+    console.log('Flag was placed', cells)
   }
-
+  
+  
   function gameOver() {
+    stopTimer()
+    joeCount.textContent = (grid.querySelectorAll('.joe')).length
+
     cells.forEach(cell => {
       if (cell.classList.contains('joe')) {
         cell.classList.remove('unclicked')
       }
       cell.removeEventListener('click', playerMove)
+      grid.removeEventListener('contextmenu', placeFlag)
     })
   }
-
+  
   function resetGame() {
     location.reload()
   }
 
   createGrid()
+  
+  // // ? Winning condiitons
+  // cells.forEach(cell => {
+  //   console.log(cell)
+  // })
 
   // * Event listeners
   grid.addEventListener('click', generateBoard)
   cells.forEach(cell => {
-    cell.addEventListener('click', playerMove)
     cell.addEventListener('contextmenu', placeFlag)
+    cell.addEventListener('click', playerMove)
   })
   newGameButton.addEventListener('click', resetGame)
 }
