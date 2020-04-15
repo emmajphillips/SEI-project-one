@@ -46,14 +46,24 @@ function init() {
     if (isPlaying) return
     isPlaying = true
 
+    event.target.textContent = '0'
+
     startTimer()
 
     // ? Generate Joe's and display sum in joeCount
-    // ! BUG: The below does not always generate 10, as there are occasional duplicates with randomIndex variable
-    for (let i = 0; i < 10; i++) {
-      const randomIndex = Math.floor(Math.random() * cellCount)
-      cells[randomIndex].classList.add('joe')
+    const nums = new Array(cellCount)
+    const randomNums = []
+
+    while (randomNums.length < 10) {
+      const randomIndex = Math.floor(Math.random() * nums.length)
+      if (!randomNums.includes(randomIndex)) {
+        nums.splice(randomIndex, 1)
+        randomNums.push(randomIndex)
+        console.log(nums.length, randomNums)
+        cells[randomIndex].classList.add('joe')
+      }
     }
+    
     joeCount.textContent = (grid.querySelectorAll('.joe')).length
 
     // ? If first cell selected contains class of 'joe', game is automatically over
