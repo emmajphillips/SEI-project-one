@@ -50,7 +50,7 @@ function init() {
 
     // ? Generate Joe's and display sum in joeCount
     // ! BUG: The below does not always generate 10, as there are occasional duplicates with randomIndex variable
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 10; i++) {
       const randomIndex = Math.floor(Math.random() * cellCount)
       cells[randomIndex].classList.add('joe')
     }
@@ -146,7 +146,11 @@ function init() {
       gameOver()
     }
     event.target.classList.remove('unclicked')
-    console.log('Player move', cells)
+
+    if ((grid.querySelectorAll('.unclicked')).length === (grid.querySelectorAll('.joe')).length) {
+      stopTimer()
+      alert('You win!')
+    }
   }
   
   
@@ -161,9 +165,7 @@ function init() {
       event.target.classList.add('flagged')
       joeCount.textContent = parseInt(joeCount.textContent) - 1
     }
-    console.log('Flag was placed', cells)
   }
-  
   
   function gameOver() {
     stopTimer()
@@ -183,11 +185,6 @@ function init() {
   }
 
   createGrid()
-  
-  // // ? Winning condiitons
-  // cells.forEach(cell => {
-  //   console.log(cell)
-  // })
 
   // * Event listeners
   grid.addEventListener('click', generateBoard)
