@@ -13,6 +13,52 @@ main, h1, h2, p {
   margin: 0 auto;
 }
 
+/* Initial 'welcome' overlay */
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .5);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  height: 90%;
+  width: 100%;
+  max-width: 650px;
+  background-color: salmon;
+  color: white;
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  text-align: center;
+  border: 2px solid rgb(192, 72, 66);
+}
+
+.welcome-container h3 {
+  -webkit-text-stroke: 0.5px black; /* Can I use this?? */
+  color: white;
+  text-shadow:
+  -0.5px -0.5px 0 #000,  
+  0.5px -0.5px 0 #000,
+  -0.5px 0.5px 0 #000,
+  0.5px 0.5px 0 #000;
+  text-align: center;
+  font-family: 'Bangers', cursive;
+  font-size: 40px;
+  letter-spacing: 1px;
+}
+
 /* Heading */
 .heading {
   margin: 40px auto;
@@ -73,7 +119,7 @@ h2 {
   text-transform: uppercase;
 }
 
-button {
+.reset-game-button {
   margin: 0 75px 0 70px;
   padding: 36px 46px;
   border: 2px solid rgb(192, 72, 66);

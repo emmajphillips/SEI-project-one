@@ -28,7 +28,7 @@ function init() {
     cells.forEach(cell => cell.classList.add('unclicked'))
   }
 
-  // ? Start timer
+  // ? Timer functions
   function startTimer() {
     timerId = setInterval(() => {
       timePassed += 1
@@ -36,7 +36,6 @@ function init() {
     }, 1000)
   }
   
-  // ? Stop timer
   function stopTimer() {
     clearInterval(timerId)
   }
@@ -45,8 +44,6 @@ function init() {
   function generateBoard(event) {
     if (isPlaying) return
     isPlaying = true
-
-    event.target.textContent = '0'
 
     startTimer()
 
@@ -59,17 +56,16 @@ function init() {
       if (!randomNums.includes(randomIndex)) {
         nums.splice(randomIndex, 1)
         randomNums.push(randomIndex)
-        console.log(nums.length, randomNums)
         cells[randomIndex].classList.add('joe')
       }
     }
-    
+
     joeCount.textContent = (grid.querySelectorAll('.joe')).length
 
-    // ? If first cell selected contains class of 'joe', game is automatically over
-    if (event.target.classList.contains('joe')) {
-      gameOver()
-    }
+    // // ? If first cell selected contains class of 'joe', game is automatically over
+    // if (event.target.classList.contains('joe')) {
+    //   gameOver()
+    // } 
     
     // ? Generate and display numbers within non-Joe cells to indicate in relation to cells with 'joe' class
     cells.forEach((cell, index) => {
@@ -159,7 +155,7 @@ function init() {
 
     if ((grid.querySelectorAll('.unclicked')).length === (grid.querySelectorAll('.joe')).length) {
       stopTimer()
-      alert('You win!')
+      console.log('You win!')
     }
   }
   

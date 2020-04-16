@@ -11,19 +11,26 @@
 </head>
 
 <body>
+  <div class="overlay">
+    <div class="welcome-container">
+      <h3>Tiger King: Murder, Mayhem and Minesweeper</h3>
+      <p>Hey, all you cool cats and kittens! </p>
+      <button id="remove-overlay" class="play-game" type="button">Play</button>
+    </div>
+  </div>
   <main>
     <div class="heading">
-    <h2>Tiger King: Murder, Mayhem and</h2>
-    <h1>Minesweeper</h1>
+      <h2>Tiger King: Murder, Mayhem and</h2>
+      <h1>Minesweeper</h1>
     </div>
-    
+
     <div class="game-container">
       <section class="top-bar">
         <div class="joe-count">
           <p>Joe count</p>
           <span id="joes-remaining">000</span>
         </div>
-        <button type="reset"></button>
+        <button type="reset" class="reset-game-button"></button>
         <div class="timer">
           <p>Timer</p>
           <span id="timer">000</span>
@@ -32,6 +39,7 @@
       <table class="grid"></table>
     </div>
   </main>
+
 </body>
 
 </html>
