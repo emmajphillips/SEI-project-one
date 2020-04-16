@@ -41,8 +41,7 @@ main, h1, h2, h3, p {
   background-color: #F27059;;
   color: white;
   font-family: 'Oswald', sans-serif;
-  font-size: 20px;
-  text-align: center;
+  font-size: 22px;
   border: 2px solid rgb(192, 72, 66);
 }
 
@@ -70,6 +69,10 @@ main, h1, h2, h3, p {
   line-height: 30px;
 }
 
+p.carole-saying {
+  font-size: 32px;
+}
+
 .play-game {
   margin: 10px 0 15px;
   padding: 10px 40px;
@@ -89,7 +92,7 @@ main, h1, h2, h3, p {
 
 /* Heading */
 .heading {
-  margin: 10vh auto 0;
+  margin: 5vh auto;
   width: 600px;
   padding: 10px 0;
   background: #F8ca82;
@@ -121,7 +124,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px auto 0;
+  margin: 5vh auto;
   padding: 9px;
   width: 500px;
   height: 650px;

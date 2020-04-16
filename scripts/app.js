@@ -17,8 +17,7 @@ function init() {
   // * Game variables
   let isPlaying = false
   let timerId
-  let timePassed = 0
-
+  
   // ? Create grid
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
@@ -29,21 +28,22 @@ function init() {
     }
     cells.forEach(cell => cell.classList.add('unclicked'))
   }
-
+  
   // ? Timer functions
   function startTimer() {
+    let timePassed = 0
     timerId = setInterval(() => {
       timePassed += 1
       timer.textContent = timePassed
     }, 1000)
   }
-  
+
   function stopTimer() {
     clearInterval(timerId)
   }
-  
+
   // ? Board populates and timer starts on player's first click within the grid
-  function generateBoard() {
+  function generateBoard(event) {
     if (isPlaying) return
     isPlaying = true
 
@@ -55,20 +55,17 @@ function init() {
 
     while (randomNums.length < 10) {
       const randomIndex = Math.floor(Math.random() * nums.length)
-      if (!randomNums.includes(randomIndex)) {
-        nums.splice(randomIndex, 1)
-        randomNums.push(randomIndex)
-        cells[randomIndex].classList.add('joe')
+      if (randomIndex !== cells.indexOf(event.target)) {
+        if (!randomNums.includes(randomIndex)) {
+          nums.splice(randomIndex, 1)
+          randomNums.push(randomIndex)
+          cells[randomIndex].classList.add('joe')
+        }
       }
     }
 
     joeCount.textContent = (grid.querySelectorAll('.joe')).length
 
-    // // ? If first cell selected contains class of 'joe', game is automatically over
-    // if (event.target.classList.contains('joe')) {
-    //   gameOver()
-    // } 
-    
     // ? Generate and display numbers within non-Joe cells to indicate in relation to cells with 'joe' class
     cells.forEach((cell, index) => {
       // * Variables for adjacent cells
@@ -80,12 +77,12 @@ function init() {
       const bottomLeftNeighbour = cells[index + width - 1] // 8
       const bottomNeighbour = cells[index + width] // 9
       const bottomRightNeighbour = cells[index + width + 1] // 10
-      
+
       // * Variable to help cells display correct number
       const x = index % width
-      
+
       let joeCounter = 0
-      
+
       if (x > 0 && topLeftNeighbour && topLeftNeighbour.classList.contains('joe')) {
         joeCounter += 1
       }
@@ -110,9 +107,9 @@ function init() {
       if (x > 0 && bottomLeftNeighbour && bottomLeftNeighbour.classList.contains('joe')) {
         joeCounter += 1
       }
-      
+
       cell.textContent = joeCounter
-      
+
       if (cells[index].classList.contains('joe')) {
         cell.textContent = ''
       }
@@ -145,10 +142,10 @@ function init() {
         }
         cell.textContent = ''
         cell.classList.remove('unclicked')
-      } 
+      }
     })
   }
-  
+
   function playerMove(event) {
     if (event.target.classList.contains('joe')) {
       gameOver()
@@ -160,11 +157,11 @@ function init() {
       console.log('You win!')
     }
   }
-  
-  
+
   // ? Placing flags: Right click places and/or removes flag on board, it also increases or decreases the joeCount displayed
-  // ! BUG: This currently allows the player to place flags before the game has commenced
   function placeFlag(event) {
+    if (!isPlaying) return
+
     event.preventDefault()
     if (event.target.classList.contains('flagged')) {
       event.target.classList.remove('flagged')
@@ -174,7 +171,7 @@ function init() {
       joeCount.textContent = parseInt(joeCount.textContent) - 1
     }
   }
-  
+
   function gameOver() {
     stopTimer()
     joeCount.textContent = (grid.querySelectorAll('.joe')).length
@@ -187,7 +184,7 @@ function init() {
       grid.removeEventListener('contextmenu', placeFlag)
     })
   }
-  
+
   function resetGame() {
     stopTimer()
     cells.forEach(cell => {
@@ -201,10 +198,10 @@ function init() {
     joeCount.textContent = '000'
     isPlaying = false
   }
-  
-  
+
+
   createGrid()
-  
+
   function removeOverlay() {
     overlay.classList.add('hidden')
     overlayButton.removeEventListener('click', removeOverlay)
