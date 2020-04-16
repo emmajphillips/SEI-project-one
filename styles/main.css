@@ -152,14 +152,33 @@ h2 {
 
 .reset-game-button {
   margin: 0 75px 0 70px;
-  padding: 36px 46px;
-  border: 2px solid rgb(192, 72, 66);
+  padding: 36px 36px;
+  border: 2px solid #F99D65;
+  box-shadow: 2px -2px 2px #F99D65, -2px 2px 2px rgb(133, 44, 40);
   background: 
-    url(../assets/carole-baskin.png), 
-    pink;
+    url(../assets/tiger.png), 
+    rgb(192, 72, 66);
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
+}
+
+.reset-game-button.game-over {
+  background:
+  url(../assets/sad-tiger.png), 
+  rgb(192, 72, 66);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.reset-game-button.winner {
+  background: 
+  url(../assets/happy-tiger.png), 
+    rgb(192, 72, 66);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 span {

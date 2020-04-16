@@ -154,6 +154,7 @@ function init() {
 
     if ((grid.querySelectorAll('.unclicked')).length === (grid.querySelectorAll('.joe')).length) {
       stopTimer()
+      newGameButton.classList.add('winner')
       console.log('You win!')
     }
   }
@@ -174,6 +175,7 @@ function init() {
 
   function gameOver() {
     stopTimer()
+    newGameButton.classList.add('game-over')
     joeCount.textContent = (grid.querySelectorAll('.joe')).length
 
     cells.forEach(cell => {
@@ -187,6 +189,8 @@ function init() {
 
   function resetGame() {
     stopTimer()
+    newGameButton.classList.remove('game-over')
+    newGameButton.classList.remove('winner')
     cells.forEach(cell => {
       if (!cell.classList.contains('unclicked')) {
         cell.classList.add('unclicked')
