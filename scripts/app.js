@@ -147,10 +147,11 @@ function init() {
   }
 
   function playerMove(event) {
+    event.target.classList.remove('unclicked')
+
     if (event.target.classList.contains('joe')) {
       gameOver()
     }
-    event.target.classList.remove('unclicked')
 
     if ((grid.querySelectorAll('.unclicked')).length === (grid.querySelectorAll('.joe')).length) {
       stopTimer()
@@ -182,8 +183,6 @@ function init() {
       if (cell.classList.contains('joe')) {
         cell.classList.remove('unclicked')
       }
-      cell.removeEventListener('click', playerMove)
-      grid.removeEventListener('contextmenu', placeFlag)
     })
   }
 
