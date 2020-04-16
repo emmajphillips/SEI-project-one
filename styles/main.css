@@ -9,7 +9,7 @@ body {
   background-size: cover;
 }
 
-main, h1, h2, p {
+main, h1, h2, h3, p {
   margin: 0 auto;
 }
 
@@ -37,15 +37,21 @@ main, h1, h2, p {
   height: 90%;
   width: 100%;
   max-width: 650px;
-  background-color: salmon;
+  max-height: 700px;
+  background-color: #F27059;;
   color: white;
   font-family: 'Oswald', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   text-align: center;
   border: 2px solid rgb(192, 72, 66);
 }
 
+.hidden {
+  display: none;
+}
+
 .welcome-container h3 {
+  margin-top: 30px;
   -webkit-text-stroke: 0.5px black; /* Can I use this?? */
   color: white;
   text-shadow:
@@ -58,10 +64,32 @@ main, h1, h2, p {
   font-size: 40px;
   letter-spacing: 1px;
 }
+.welcome-container p {
+  padding: 0 50px;
+  text-align: justify;
+  line-height: 30px;
+}
+
+.play-game {
+  margin: 10px 0 15px;
+  padding: 10px 40px;
+  background-color: rgb(192, 72, 66);
+  border: 1px solid white;
+  border-radius: 6px;
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: white
+}
+
+.play-game:hover {
+  background-color: rgb(133, 44, 40);
+  transform: scale(1.1);
+}
 
 /* Heading */
 .heading {
-  margin: 40px auto;
+  margin: 10vh auto 0;
   width: 600px;
   padding: 10px 0;
   background: #F8ca82;

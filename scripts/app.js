@@ -5,7 +5,9 @@ function init() {
   const cells = [] // Array of divs
   const joeCount = document.querySelector('#joes-remaining')
   const timer = document.querySelector('#timer')
-  const newGameButton = document.querySelector('button')
+  const newGameButton = document.querySelector('#reset-game-button')
+  const overlay = document.querySelector('#overlay')
+  const overlayButton = document.querySelector('#remove-overlay')
 
   // * Grid variables
   const width = 9
@@ -41,7 +43,7 @@ function init() {
   }
   
   // ? Board populates and timer starts on player's first click within the grid
-  function generateBoard(event) {
+  function generateBoard() {
     if (isPlaying) return
     isPlaying = true
 
@@ -187,12 +189,29 @@ function init() {
   }
   
   function resetGame() {
-    location.reload()
+    stopTimer()
+    cells.forEach(cell => {
+      if (!cell.classList.contains('unclicked')) {
+        cell.classList.add('unclicked')
+      }
+      cell.classList.remove('flagged')
+      cell.classList.remove('joe')
+    })
+    timer.textContent = '000'
+    joeCount.textContent = '000'
+    isPlaying = false
+  }
+  
+  
+  createGrid()
+  
+  function removeOverlay() {
+    overlay.classList.add('hidden')
+    overlayButton.removeEventListener('click', removeOverlay)
   }
 
-  createGrid()
-
   // * Event listeners
+  overlayButton.addEventListener('click', removeOverlay)
   grid.addEventListener('click', generateBoard)
   cells.forEach(cell => {
     cell.addEventListener('contextmenu', placeFlag)

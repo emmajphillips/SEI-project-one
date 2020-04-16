@@ -11,10 +11,12 @@
 </head>
 
 <body>
-  <div class="overlay">
+  <div id="overlay" class="overlay">
     <div class="welcome-container">
       <h3>Tiger King: Murder, Mayhem and Minesweeper</h3>
-      <p>Hey, all you cool cats and kittens! </p>
+      <p>Hey, all you cool cats and kittens!</p>
+      <p>Minesweeper is a classic game where the player aims to clear a board containing hidden "mines"  without detonating any of them. The location of the mines can be determined through numbered clues displayed in adjacent tiles. if the player suspects that a tile contains a mine, the tile can be marked by placing a flag with the right mouse button. The game is won by clearing all tiles without hitting a mine.</p>
+      <p>In this Tiger King version, the same rules apply, however, the mines are replaced by Joe Exotic and the flags are rdisplayed as paw prints</p>
       <button id="remove-overlay" class="play-game" type="button">Play</button>
     </div>
   </div>
@@ -30,7 +32,7 @@
           <p>Joe count</p>
           <span id="joes-remaining">000</span>
         </div>
-        <button type="reset" class="reset-game-button"></button>
+        <button type="reset" id="reset-game-button" class="reset-game-button"></button>
         <div class="timer">
           <p>Timer</p>
           <span id="timer">000</span>
