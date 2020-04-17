@@ -10,9 +10,9 @@ function init() {
   const overlayButton = document.querySelector('#remove-overlay')
 
   // * Grid variables
-  const width = 9
   const height = 9
-  const cellCount = width * height // have included this in case able to make board of different dimensions
+  const width = 9
+  const cellCount = width * height
 
   // * Game variables
   let isPlaying = false
@@ -49,13 +49,22 @@ function init() {
 
     startTimer()
 
-    // ? Generate Joe's and display sum in joeCount
+    // ? Generate Joe's and display sum in joeCount, guarantee that first cell clicked will always be '0'
     const nums = new Array(cellCount)
     const randomNums = []
+    const firstCell = cells.indexOf(event.target)
 
     while (randomNums.length < 10) {
       const randomIndex = Math.floor(Math.random() * nums.length)
-      if (randomIndex !== cells.indexOf(event.target)) {
+      if (randomIndex !== firstCell && 
+          randomIndex !== firstCell - width - 1 && 
+          randomIndex !== firstCell - width && 
+          randomIndex !== firstCell - width + 1 && 
+          randomIndex !== firstCell - 1 && 
+          randomIndex !== firstCell + 1 && 
+          randomIndex !== firstCell + width - 1 && 
+          randomIndex !== firstCell + width && 
+          randomIndex !== firstCell + width + 1) {
         if (!randomNums.includes(randomIndex)) {
           nums.splice(randomIndex, 1)
           randomNums.push(randomIndex)
@@ -110,10 +119,10 @@ function init() {
 
       cell.textContent = joeCounter
 
-      if (cells[index].classList.contains('joe')) {
+      if (cell.classList.contains('joe')) {
         cell.textContent = ''
       }
-
+      // ! BUG: The below finds all cells that contain a zero and removes their cover (i.e. removes the 'unclicked' class). Ideally, this would be in a separate function and would only find  the '0' cells near the event.target and alter their classes
       // * Clearing empty cells to reveal a border of numbers
       if (cell.textContent === '0') {
         if (x > 0 && topLeftNeighbour) {
@@ -156,7 +165,11 @@ function init() {
     if ((grid.querySelectorAll('.unclicked')).length === (grid.querySelectorAll('.joe')).length) {
       stopTimer()
       newGameButton.classList.add('winner')
-      console.log('You win!')
+      cells.forEach(cell => {
+        if (cell.classList.contains('joe')) {
+          cell.classList.add('flagged')
+        }
+      })
     }
   }
 
@@ -202,9 +215,8 @@ function init() {
     isPlaying = false
   }
 
-
   createGrid()
-
+  
   function removeOverlay() {
     overlay.classList.add('hidden')
     overlayButton.removeEventListener('click', removeOverlay)
