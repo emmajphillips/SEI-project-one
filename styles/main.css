@@ -5,7 +5,7 @@ body {
   margin: 0 auto;
   background: 
     linear-gradient(rgba(247, 178, 103, 0.95), rgba(247, 178, 103, 0.95)),
-    url(./assets/tiger-print.jpeg);
+    url(../assets/tiger-print.jpeg);
   background-size: cover;
 }
 
