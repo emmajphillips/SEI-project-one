@@ -5,7 +5,7 @@ body {
   margin: 0 auto;
   background: 
     linear-gradient(rgba(247, 178, 103, 0.95), rgba(247, 178, 103, 0.95)),
-    url(../assets/tiger-print.jpeg);
+    url(./assets/tiger-print.jpeg);
   background-size: cover;
 }
 
@@ -156,7 +156,7 @@ h2 {
   border: 2px solid #F99D65;
   box-shadow: 2px -2px 2px #F99D65, -2px 2px 2px rgb(133, 44, 40);
   background: 
-    url(../assets/tiger.png), 
+    url(./assets/tiger.png), 
     rgb(192, 72, 66);
   background-repeat: no-repeat;
   background-size: contain;
@@ -165,7 +165,7 @@ h2 {
 
 .reset-game-button.game-over {
   background:
-  url(../assets/sad-tiger.png), 
+  url(./assets/sad-tiger.png), 
   rgb(192, 72, 66);
   background-size: contain;
   background-repeat: no-repeat;
@@ -174,7 +174,7 @@ h2 {
 
 .reset-game-button.winner {
   background: 
-  url(../assets/happy-tiger.png), 
+  url(./assets/happy-tiger.png), 
     rgb(192, 72, 66);
   background-size: contain;
   background-repeat: no-repeat;
@@ -210,7 +210,7 @@ font-size: 30px;
 }
 
 .grid div.joe {
-  background: url(../assets/joe-exotic.jpg);
+  background: url(./assets/joe-exotic.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -228,7 +228,7 @@ font-size: 30px;
 /* Flagged cell styling */
 .grid div.unclicked.flagged {
   background: 
-  url(../assets/paw-print-flag.png),
+  url(./assets/paw-print-flag.png),
   linear-gradient(rgba(242, 92, 84, 1), rgba(242, 92, 84, 1));
   background-size: contain;
   background-repeat: no-repeat;
