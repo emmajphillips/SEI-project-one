@@ -21,6 +21,7 @@ Feel free to play it here: https://emmajphillips.github.io/sei-project-one/
 * [Final product](#Final-product)
 * [Wins and challenges](#Wins-and-challenges)
 * [Bugs](#Bugs)
+* [Conclusion](#In-summary)
 
 ## Brief
 
