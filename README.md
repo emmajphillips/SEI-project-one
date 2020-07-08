@@ -12,9 +12,12 @@ In this Tiger King version of Minesweeper, the mines are replaced by Joe Exotic 
 
 This was my first project from General Assembly's Software Engineering Immersive course. It was an individual project which was built over the course of a week. 
 
+Feel free to play it here: https://emmajphillips.github.io/sei-project-one/
+
 ## Table of contents
 
 * [Brief](#Brief)
+* [Build](#Build)
 * [Final product](#Final-product)
 * [Wins and challenges](#Wins-and-challenges)
 * [Bugs](#Bugs)
@@ -31,6 +34,36 @@ This was my first project from General Assembly's Software Engineering Immersive
 * HTML5
 * CSS3
 * JavaScript
+
+## Build 
+
+### Day one
+
+I started the build by setting targets for how I wanted the game to look and to function. This involved hand-drawing a rough wireframe and writing down the various features to include.
+
+For me, the first priority was creating grid in which to play the game. This was achieved through JavaScript by creating a 'cell' child element and appending it within the larger grid element.
+
+```  
+function createGrid() {
+    for (let i = 0; i < cellCount; i++) {
+      const cell = document.createElement('div')
+      
+      grid.appendChild(cell)
+      cells.push(cell)
+    }
+    cells.forEach(cell => cell.classList.add('unclicked'))
+  }
+  ```
+
+### Day two through six
+
+The following days involved building the logic of the game and determining the conditions for winning. This included randomly generating 10 bombs across the grid, displaying numbers within uncovered cells that indicated how many bombs were adjacent to the cell, updating the cell based on player action (e.g. placing a flag or clicking on a covered cell to reveal what was underneath), ending the game if the player has won or lost, along with other functions and features that elevated the gaming experience.
+
+On day six, I also started to think about the design of the game, researching various Tiger King personalities and how I could bring those into the game (detailed in the [Design](#Design) section below) and preparing assets. Each image, apart from the one of Joe Exotic, was photoshopped to be a sticker. 
+
+### Day seven
+
+Once I was happy with the logic of the game, I shifted my focus fully to design to create the current look of the game. I also added an overlay with a brief introduction usng Carole's catchphrase, 'Hey all you cool cats and kittens,' and the game instructions.
 
 ## Final product
 
@@ -64,6 +97,14 @@ There was one bug that I was unable to resolve during development, which had to 
 
 ### Future content
 
-With hindsight, I would re-create the game using a two-dimensional array for the grid of cells, which would help in targeting and accessing specific cells and groups of cells. I beieve this would also help with th bug described above. Ideally what I want is for the first click to produce is a series of blank cells with a perimeter of numbered cells to indicate bombs, but without every blank cell being revealed.
+With hindsight, I would re-create the game using a two-dimensional array for the grid of cells, which would help in targeting and accessing specific cells and groups of cells. I believe this would also help with th bug described above. Ideally what I want is for the first click to produce is a series of blank cells with a perimeter of numbered cells to indicate bombs, but without every blank cell being revealed.
 
-From a design perscpetive, I woul dalso like to explore making the cells appear more three dimensional when they are covered.
+From a design perspective, I would also like to explore making the cells appear more three dimensional when they are covered.
+
+## In summary
+
+I believe building this game was one of the best tasks to solidify my understanding of HTML, CSS and JavaScript. It reflects where I was in my ability after one month of a software engineering bootcamp, which I came into with a basic understanding of all three languages. 
+
+This project certainly pushed me, but I feel like I rose to the occasion and was able to learn a lot. Of course, looking back, there are several decisions I made throughout development that I would go back and change were I to do this project again. The biggest change being the data structure of the grid from a single array to a two-dimensional one. 
+
+Overall, however, I am proud of what I was able to accomplish and to learn.
